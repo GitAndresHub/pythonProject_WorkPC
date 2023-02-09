@@ -1,5 +1,5 @@
 
-def ask_user_age(age_limit: int) -> int:
+def ask_user_age():
     """
     Ask user age.
 
@@ -30,20 +30,25 @@ def ask_user_age(age_limit: int) -> int:
 
     (function returns 21)
     """
-
+    age_lim = input("Set lower age limit: ")
+    age_limit = int(age_lim)
+    old_lim = input("Set high age limit: ")
+    old_limit = int(old_lim)
+    if old_limit <= age_limit:
+        return ("Provided age ranges not compatible with the program!")
     while True:
-        age = input("What is your age?")
+        age = input("What is your age? ")
         if age.isnumeric():  # checking if input provided is number
             agenr = int(age)  # if numbers provided, converting the string to integer
-            if agenr > 100:  # if the number higher than 100, print "Too old!"
+            if agenr > old_limit:  # if the number higher than 100, print "Too old!"
                 print("Too old!")
             elif agenr >= age_limit:  # if age provided is equal or larger than the set limit, print the age
-                return int(age)
+                return (f"Your age, {int(age)}, is in the acceptable range!")
             elif agenr < age_limit:  # if age smaller than set limit, print "Too young!"
                 print("Too young!")
         else:
             print("Wrong input!")  # if anything else than number provided as input, print "Wrong input!"
 
-print(ask_user_age(18))
+print(ask_user_age())
 
 
