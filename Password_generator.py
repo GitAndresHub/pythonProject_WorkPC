@@ -11,7 +11,11 @@ def generate_password():
         while i <= char_num:
             char = random.choice(string.ascii_letters)
             num = random.randint(0, 9)
-            password = str(char + str(num))
+            one_or_two = random.randint(1, 2)
+            if one_or_two == 1:
+                password = char
+            else:
+                password = str(num)
             i += 1
         print(password, end="")
 
