@@ -3,17 +3,19 @@ import string
 
 
 def generate_password():
-    instructions = input("How many characters do you want in your password? ")
-    char_num = int(instructions)
-    password = []
-    i = 0
-    for i in range(char_num):
-        while i <= char_num:
+    instructions = int(input("How many characters do you want in your password? "))
+    password = ()
+    for i in range(instructions):
+        while i <= instructions:
             char = random.choice(string.ascii_letters)
             num = random.randint(0, 9)
-            one_or_two = random.randint(1, 2)
-            if one_or_two == 1:
+            spec = ["!", "#", "%", "&", "*", "@", "$", "£", "€"]
+            special = random.choice(spec)
+            ratio = random.randint(1, 10)
+            if ratio < 5:
                 password = char
+            elif ratio > 8:
+                password = str(special)
             else:
                 password = str(num)
             i += 1
