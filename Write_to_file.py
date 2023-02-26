@@ -10,4 +10,4 @@ file_name = input("Please enter file name: ")
 
 with open(f"C:/Users/Arvuti3/Documents/{file_name}.txt", "w") as open_file:
     for headline in headlines:
-        open_file.write(headline.text.strip())
+        open_file.write(headline.text.strip() + "\n")
