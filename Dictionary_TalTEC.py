@@ -96,6 +96,7 @@ def count_symbol_appearances(stringy: str) -> dict:
     print(new_dict)
 
 count_symbol_appearances("hello hi")
+
 def organise_by_first_symbol(strings: list) -> dict:
     """
     Return dict where key the is a symbol and the value is a list of words starting with this symbol.
@@ -107,20 +108,29 @@ def organise_by_first_symbol(strings: list) -> dict:
     :return: dict with starting symbol and corresponding words in order of appearance.
     """
 
-    dictionary = {}
+    sorted = {}
 
     for element in strings:
 
-        first_char = element[0]
+        first = element[0]
 
-        if first_char in dictionary:
+        if first in sorted:
 
-            dictionary[first_char]
+            sorted[first].append(element)
 
         else:
-            dictionary[first_char] = element
+            sorted[first] = [element]
 
-    print(dictionary)
+    print(sorted)
+#    dictionary = {}  # create an empty dictionary
+#
+#   for element in strings:
+#        key = element[0]
+#        if key in dictionary:
+#            dictionary[key].append(element)
+#        else:
+#            dictionary[key] = [element]
+#    print(dictionary)
 
 
 organise_by_first_symbol(["hello", "word", "world", "welcome", "yes"])
