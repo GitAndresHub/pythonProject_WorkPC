@@ -52,12 +52,21 @@ def merge_dates_and_towns_into_csv(dates_filename: str, towns_filename: str, csv
             with open("merged_csv.txt", "w") as csv_output_filename:  # create merged_csv.txt file
                     dates = csv.reader(dates_filename, delimiter=":")
                     towns = csv.reader(towns_filename, delimiter=":")
+                    dates_list = []
+                    towns_list = []
+                    result = [["name", "town", "date"]]
                     for row in dates:
-                        rows = str(row)
-                        csv_output_filename.write(rows)
+                        # rows = str(row)
+                        dates_list.append(row)  # csv_output_filename.write(rows)
                     for row in towns:
-                        rows_two = str(row)
-                        csv_output_filename.write(rows_two)
-
+                        # rows_two = str(row)
+                        towns_list.append(row)  # csv_output_filename.write(rows_two)
+                    for element in dates_list:
+                        result.append(element)
+                    for element in towns_list:
+                        result.append(element)
+                    print(dates_list)
+                    print(towns_list)
+                    print(result)
 
 merge_dates_and_towns_into_csv("dates.txt", "towns.txt", "merged_cvs.txt")
