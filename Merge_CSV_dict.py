@@ -50,15 +50,18 @@ def merge_dates_and_towns_into_csv(dates_filename: str, towns_filename: str, csv
         with open("towns.txt", "r") as towns_filename:
 
             with open("merged_csv.txt", "w") as csv_output_filename:  # create merged_csv.txt file
-                dates = csv.reader(dates_filename, delimiter=":")
-                towns = csv.reader(towns_filename, delimiter=":")
-                result = [["name", "town", "date"]]
+                    dates = csv.reader(dates_filename)
+                    towns = csv.reader(towns_filename)
+                    result = [["name", "town", "date"]]
+                    dates_text = str(dates)
+                    towns_text = str(towns)
+                    for line in dates_text.split("\n"):
+                        tokens = line.split(":")
+                        tokens.insert(2, "-")
+                        result.append(tokens)
+                    print(result)
+                    for line in towns:
+                        result.append(line)
+                    print(result)
 
-                dates_dict = {}
-                towns_dict = {}
-                names_list = []
-                for element in dates:
-                    dates_dict[element[0]] = element[1]
-                    names_list.append(element[0])
-                print(names_list)
-                print(dates_dict)
+merge_dates_and_towns_into_csv("dates.txt", "towns.txt", "merged_cvs.txt")

@@ -56,22 +56,40 @@ def merge_dates_and_towns_into_csv(dates_filename: str, towns_filename: str, csv
                     dates_list = []
                     towns_list = []
                     for row in dates:
-                        list = [row[0], "_", row[1]]
+                        list = [row[0], "-", row[1]]
                         dates_list.append(list)
                     for row in towns:
                         list = [row[0], row[1], "-"]
                         towns_list.append(list)
-                    print(dates_list)
-                    print(towns_list)
-                    for element in dates_list:
-                        if element[0] in towns_list:
-                            print(element[0])
-                            print("yes")
-                    for element in dates_list:
-                        result.append(element)
-                    for element in towns_list:
-                        result.append(element)
-                    print(result)
-                    csv_output_filename.write(str(result))
+                    for person in dates_list:
+                        name = person[0]
+                        found_match = False
+                        for info in towns_list:
+                            if info[0] == name:
+                                town = info[1] if info[1] != '-' else ''
+                                date = person[2] if person[2] != '-' else ''
+                                new_info = [name, town, date]
+                                result.append(new_info)
+                                found_match = True
+                                break  # stop searching for this name
+                        if not found_match:
+                            town = ''
+                            date = person[2] if person[2] != '-' else ''
+                            new_info = [name, town, date]
+                            result.append(new_info)
+                    # add entry for 'mari'
+                    for info in towns_list:
+                        if info[0] == 'mari':
+                            town = info[1] if info[1] != '-' else ''
+                            date = '_'  # set date to '_' for 'mari'
+                            new_info = ['mari', town, date]
+                            result.append(new_info)
+                            final = str(result)
+                            for line in final.split("\n"):
+                                tokens = line.split(",")
+                    print(tokens)
+                    writer = csv.writer(csv_output_filename)
+                    for line in tokens:
+                        writer.writerow(line)
 
 merge_dates_and_towns_into_csv("dates.txt", "towns.txt", "merged_cvs.txt")

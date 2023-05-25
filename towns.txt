@@ -1,3 +1,2 @@
-mari:tallinn
-ago:tartu
-mati:narva
+john:london
+mary:new york
